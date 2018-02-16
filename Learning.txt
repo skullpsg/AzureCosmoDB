@@ -1,0 +1,83 @@
+ 
+* DocumentDB
+
+* globally distributed
+	As you add and remove regions to your Cosmos DB database, your application does not need to be redeployed 
+
+* multiple data models - This means that it can be used for document, key value, relational, and graph models
+
+* Multi-API
+  
+   	SQL, 
+   	Gremlin, 
+	JavaScript,
+	Azure Table Storage, 
+	and MongoDB
+
+* collection
+    
+
+* Read  -  less than 10 milliseconds 
+  write -  less than 15 milliseconds
+
+* request units per second (Throughput)
+    memory, I/o, cpu
+  Read  -  1 (1Kb json read)
+  write -  5
+  
+  factor to be consider:
+     batch querry < req unit
+     multiple copies of db > req unit
+     querry request unit using .net package < req unit
+     querry more than 1kb document will also < req unit
+
+  Website calculator: documentdb.com/capacityplanner
+
+* scaling throughput in regional level or collections level
+    Note : you can independently scale storage and throughput
+
+* everything is stored in the form of json and every properties is indexed.
+
+	Default indexing:
+
+	String Properties - Range Indexed
+	Numeric Properties - Range Indexed
+	Spatial - Point Indexed
+
+	Code:
+
+	String Properties - Hash Indexed
+	Numeric Properties - Range Indexed
+
+
+* Three times cheaper than AWS DynamoDB or Google Spanner.
+
+* Partition key reached maximum size of 10 GB(error)
+
+API	          	 Partition key				Row key
+Azure Cosmos DB	   	Custom partition key path		Fixed id
+MongoDB			Custom shared key			Fixed _id
+Graph			Custom partition key property		Fixed id
+Table			Fixed PartitionKey			Fixed RowKey
+
+* Azure Cosmos DB uses hash-based partitioning
+
+Design for partitioning
+
+Boundary for query and transactions
+No storage and performance bottlenecks
+
+
+Partitioning and multitenancy
+
+One partition key per tenant
+One container per tenant
+
+Reference :https://docs.microsoft.com/en-us/azure/cosmos-db/partition-data
+
+* Unique key:
+ may be single or combination of properties
+
+Cosmo Db :
+https://aka.ms/cosmosdb-emulator
+
